@@ -1,1 +1,1 @@
-# python-p1
+# Python lessons of Head First bock

@@ -15,3 +15,9 @@ ImportError: DLL load failed: A dynamic link library (DLL) initialization routin
 https://github.com/fo40225/tensorflow-windows-wheel
 
     pip install https://raw.githubusercontent.com/fo40225/tensorflow-windows-wheel/master/1.12.0/py36/CPU/sse2/tensorflow-1.12.0-cp36-cp36m-win_amd64.whl
+    
+Запуск tensorboard
+
+    tensorboard --logdir=log_simple_graph --host=127.0.0.1
+
+    

@@ -19,5 +19,9 @@ https://github.com/fo40225/tensorflow-windows-wheel
 Запуск tensorboard
 
     tensorboard --logdir=log_simple_graph --host=127.0.0.1
+    
+Создание дистрибутива пакета
+    
+    py -3 setup.py sdist
 
     

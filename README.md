@@ -24,4 +24,6 @@ https://github.com/fo40225/tensorflow-windows-wheel
     
     py -3 setup.py sdist
 
-    
+UNIX-подобных ОС
+
+    python3 setup.py sdist

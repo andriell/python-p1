@@ -21,4 +21,20 @@ def count4vowels(phrase):
     pprint.pprint(r)
     return bool(r)
 
-count4vowels(input('Provide a word to search for vowels: '))
+def double(arg):
+    print('Before: ', arg)
+    arg = arg * 2
+    print('After: ', arg)
+
+def change(arg):
+    print('Before: ', arg)
+    arg.append('More data')
+    print('After: ', arg)
+
+var1 = [1]
+double(var1)
+print(var1)
+
+var2 = ['data']
+change(var2)
+print(var2)

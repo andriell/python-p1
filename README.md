@@ -27,3 +27,12 @@ https://github.com/fo40225/tensorflow-windows-wheel
 UNIX-подобных ОС
 
     python3 setup.py sdist
+
+Тестирование кода
+
+    pip install pytest
+    pip install pytest-pep8
+
+Проверка файла vsearch.py на совместимость со стандартом pep8
+
+    py.test --pep8 vsearch.py

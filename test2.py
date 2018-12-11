@@ -13,7 +13,7 @@ for value in [x, w, y, y_, loss]:
 summaries = tf.summary.merge_all()
 
 sess = tf.Session()
-summary_writer =  tf.summary.FileWriter('log_simple_stats', sess.graph)
+summary_writer = tf.summary.FileWriter('log_simple_stats', sess.graph)
 
 sess.run(tf.global_variables_initializer())
 for i in range(100):

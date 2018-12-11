@@ -1,13 +1,16 @@
 import pprint
 
-def search4vowels(phrase:str) -> set:
+
+def search4vowels(phrase: str) -> set:
     """Выводит гласные найденные во введенном слове"""
     vowels = set('aeiou')
     return vowels.intersection(set(phrase))
 
-def search4leters(phrase:str, leters:str = 'aeiou') -> set:
+
+def search4leters(phrase: str, leters: str = 'aeiou') -> set:
     """Возвращает множество букв из 'leters', найденных в указанной фразе."""
     return set(leters).intersection(set(phrase))
+
 
 def count4vowels(phrase):
     """Выводит гласные найденные во введенном слове"""
@@ -21,15 +24,18 @@ def count4vowels(phrase):
     pprint.pprint(r)
     return bool(r)
 
+
 def double(arg):
     print('Before: ', arg)
     arg = arg * 2
     print('After: ', arg)
 
+
 def change(arg):
     print('Before: ', arg)
     arg.append('More data')
     print('After: ', arg)
+
 
 var1 = [1]
 double(var1)

@@ -1,7 +1,14 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, send_from_directory
+import os
 import vsearch
 
 app = Flask(__name__)
+
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 
 @app.route('/')
@@ -21,6 +28,7 @@ def search() -> 'html':
                            the_title=title,
                            the_results=results,
                            )
+
 
 @app.route('/entry')
 def entry() -> 'html':

@@ -11,7 +11,7 @@ def hello() -> '302':
 
 @app.route('/search', methods=['POST'])
 def search() -> 'html':
-    title = 'title = Here are your results:'
+    title = 'Here are your results:'
     phrase = request.form['phrase']
     letters = request.form['letters']
     results = vsearch.search_for_letters(phrase, letters)

@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, redirect, send_from_directory, escape, session
 import os
 import vsearch
-from webapp import DBcm
+from webapp.DBcm import UseDatabase
+from webapp.checker import check_logged_in
 
 app = Flask(__name__)
 
@@ -14,7 +15,7 @@ app.config['dbconfig'] = {'host': '127.0.0.1',
 
 
 def log_request(req: 'flask_request', res: str) -> None:
-    with DBcm.UseDatabase(app.config['dbconfig']) as cursor:
+    with UseDatabase(app.config['dbconfig']) as cursor:
         _SQL = """insert into log
         (phrase, letters, ip, browser_string, results)
         values
@@ -58,9 +59,10 @@ def entry() -> 'html':
 
 
 @app.route('/viewlog')
+@check_logged_in
 def view_the_log() -> str:
     contents = []
-    with DBcm.UseDatabase(app.config['dbconfig']) as cursor:
+    with UseDatabase(app.config['dbconfig']) as cursor:
         _SQL = """select phrase, letters, ip, browser_string, results from log"""
         cursor.execute(_SQL)
         contents = cursor.fetchall()

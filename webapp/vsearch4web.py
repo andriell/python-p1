@@ -44,7 +44,10 @@ def search() -> 'html':
     phrase = request.form['phrase']
     letters = request.form['letters']
     results = str(vsearch.search_for_letters(phrase, letters))
-    log_request(request, results)
+    try:
+        log_request(request, results)
+    except Exception as err:
+        print(str(err))
     return render_template('results.html',
                            the_phrase=phrase,
                            the_letters=letters,

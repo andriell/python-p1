@@ -4,8 +4,8 @@ try:
     with open('myfile.txt') as fh:
         file_data = fh.read()
     print(file_data)
-except Exception:
-    print('Error')
+except Exception as error:
+    print('Error', str(error))
 
 
 try:

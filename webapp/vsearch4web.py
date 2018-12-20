@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, redirect, send_from_directory, escape, session
+from flask import Flask, render_template, request, redirect, send_from_directory, copy_current_request_context, session
+from threading import Thread
 import os
 import vsearch
 from webapp.DBcm import UseDatabase
@@ -40,12 +41,26 @@ def hello() -> '302':
 
 @app.route('/search', methods=['POST'])
 def search() -> 'html':
+    @copy_current_request_context
+    def log_request(req: 'flask_request', res: str) -> None:
+        with UseDatabase(app.config['dbconfig']) as cursor:
+            _SQL = """insert into log
+            (phrase, letters, ip, browser_string, results)
+            values
+            (%s, %s, %s, %s, %s)"""
+            cursor.execute(_SQL, (req.form['phrase'],
+                                  req.form['letters'],
+                                  req.remote_addr,
+                                  req.user_agent.browser,
+                                  res,))
+
     title = 'Here are your results:'
     phrase = request.form['phrase']
     letters = request.form['letters']
     results = str(vsearch.search_for_letters(phrase, letters))
     try:
-        log_request(request, results)
+        t = Thread(target=log_request, args=(request, results))
+        t.start()
     except Exception as err:
         print(str(err))
     return render_template('results.html',

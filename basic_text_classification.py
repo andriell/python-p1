@@ -55,3 +55,4 @@ model.summary()
 model.compile(optimizer=tf.train.AdamOptimizer(),
               loss='binary_crossentropy',
               metrics=['accuracy'])
+
